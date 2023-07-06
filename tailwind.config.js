@@ -13,6 +13,16 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
+    colors: {
+      'trans-dark': '#1E1E1ECC',
+      "bronze": "#CD7F32",
+      "dark": "#1E1E1E",
+      "light": "#f5f5f5"
+    },
+    fontFamily: {
+      caveat: ['Caveat', 'sans-serif'],
+      nunito: ['Nunito Sans', 'sans-serif'],
+    },
   },
   plugins: [],
 }
