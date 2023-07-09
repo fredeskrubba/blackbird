@@ -1,8 +1,8 @@
 import React from 'react'
 import IntroBanner from './IntroBanner'
-import image1 from "../../assets/images/intro-image-1.png"
-import image2 from "../../assets/images/intro-image-2.png"
-import image3 from "../../assets/images/intro-image-3.png"
+import image1 from "../../../assets/images/intro-image-1.png"
+import image2 from "../../../assets/images/intro-image-2.png"
+import image3 from "../../../assets/images/intro-image-3.png"
 
 const Intro = () => {
   return (
