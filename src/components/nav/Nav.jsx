@@ -7,7 +7,7 @@ import blogIcon from "../../assets/icons/blog-icon.svg"
 
 const Nav = () => {
   return (
-    <nav className='flex justify-between px-24 py-6 bg-trans-dark fixed w-full'>
+    <nav className='flex justify-between px-24 py-6  fixed w-full m-0'>
         <Image
             src={menuIcon}
             width={50}
