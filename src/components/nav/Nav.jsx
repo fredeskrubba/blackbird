@@ -7,7 +7,7 @@ import profileIcon from "../../assets/icons/profile-icon.svg"
 import blogIcon from "../../assets/icons/blog-icon.svg"
 import { useState } from 'react'
 
-const Nav = () => {
+const Nav = ({home}) => {
     const [colorChange, setColorChange] = useState(false)
     const changeNavbarColor = () => {
         if (window.scrollY >= 300) {
@@ -20,7 +20,7 @@ const Nav = () => {
     window.addEventListener('scroll', changeNavbarColor);
 
     return (
-        <nav className={` ${colorChange ? "bg-light shadow-md" : ""} flex justify-between px-24 py-6 fixed w-full m-0`}>
+        <nav className={` ${colorChange ? "bg-light shadow-md border-bronze border-b-4" : ""} ${home ? "" : "bg-light shadow-md border-bronze border-b-4" } flex justify-between px-24 py-6 fixed w-full m-0`}>
             <Image
                 src={menuIcon}
                 width={50}

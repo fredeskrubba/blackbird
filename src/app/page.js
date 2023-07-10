@@ -6,7 +6,7 @@ import Join from '@/components/home/join/Join'
 export default function Home() {
   return (
     <main className="bg-light font-nunito">
-      <Nav/>
+      <Nav home={true}/>
       <Header/>
       <Intro/>
       <Join/>
