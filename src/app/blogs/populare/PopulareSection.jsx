@@ -3,6 +3,8 @@ import React from 'react'
 import blogImage from "../../../assets/images/blog-image.png"
 import BlogCard from './BlogCard'
 import { useState } from 'react'
+import Image from 'next/image'
+import arrowIcon from "../../../assets/icons/arrow-icon.svg"
 
 const PopulareSection = () => {
     const [activeCat, setActiveCat] = useState(1)
@@ -76,12 +78,12 @@ const PopulareSection = () => {
         },
     ]
   return (
-    <section className='pt-52 '>
+    <section className='pt-52 flex flex-col'>
         <article className='flex flex-col gap-4 px-24'>
             <h2 className='text-bronze font-caveat text-6xl font-bold'>Hot lige nu</h2>
             <div className='p-0.5 bg-bronze w-56 -rotate-3 z-0'></div>
         </article>
-        <div className='mt-16 px-24 grid grid-cols-2 gap-60 mb-48'>
+        <div className='mt-16 px-24 grid grid-cols-2 gap-60 mb-32'>
             {
                 blogs.map(({img, tags, title, description, id}) => <BlogCard key={id} img={img} tags={tags} headline={title} description={description}/>)
             }
@@ -91,6 +93,10 @@ const PopulareSection = () => {
                 categories.map(({name, id}) => <div key={id} className={`${activeCat === id ? "bg-bronze text-dark" : "bg-dark text-bronze"} border-2 border-bronze rounded-full px-12 py-2 text-2xl hover:cursor-pointer`} onClick={()=> setActiveCat(id)}>{name}</div>)
             }
         </article>
+        <div className='flex gap-4 border-2 border-bronze py-4 px-8 rounded-full items-center justify-center w-52 self-end mx-24 hover:cursor-pointer'>
+            <p className='text-bronze font-semibold text-3xl'>Nyeste</p>
+            <Image src={arrowIcon} alt='arrow' width={25} height={25}/>
+        </div>
         <div className='mt-16 px-24 grid grid-cols-2 gap-60 mb-48'>
             {
                 blogs.map(({img, tags, title, description, id}) => <BlogCard key={id} img={img} tags={tags} headline={title} description={description}/>)
