@@ -3,6 +3,7 @@ import React from 'react'
 import blogImage from "../../../assets/images/blog-image.png"
 import BlogCard from './BlogCard'
 import { useState } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import arrowIcon from "../../../assets/icons/arrow-icon.svg"
 
@@ -104,7 +105,7 @@ const PopulareSection = () => {
         </div>
         <footer className='bg-dark p-56 flex items-center flex-col gap-28'>
             <h2 className='text-6xl text-center text-bronze font-bold w-1/2 '>Mangler der noget? Lav din egen blogpost!</h2>
-            <p className='text-6xl font-bold bg-bronze text-dark py-12 px-36 rounded-full'>Kom I gang</p>
+            <Link href='/create-blog'><p className='text-6xl font-bold bg-bronze text-dark py-12 px-36 rounded-full'>Kom I gang</p></Link>
         </footer>
     </section>
   )

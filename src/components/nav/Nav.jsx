@@ -5,6 +5,7 @@ import menuIcon from "../../assets/icons/menu-icon.svg"
 import searchIcon from "../../assets/icons/search-icon.svg"
 import profileIcon from "../../assets/icons/profile-icon.svg"
 import blogIcon from "../../assets/icons/blog-icon.svg"
+import Link from 'next/link'
 import { useState } from 'react'
 
 const Nav = ({home}) => {
@@ -29,6 +30,7 @@ const Nav = ({home}) => {
                 className='hover:cursor-pointer'
             />
             <div className='flex gap-8'>
+            <Link href="/profile">
                 <Image
                     src={profileIcon}
                     width={50}
@@ -36,6 +38,7 @@ const Nav = ({home}) => {
                     alt="profile-button"
                     className='hover:cursor-pointer'
                 />
+            </Link>
                 <Image
                     src={searchIcon}
                     width={50}
@@ -43,13 +46,15 @@ const Nav = ({home}) => {
                     alt="search-button"
                     className='hover:cursor-pointer'
                 />
-                <Image
-                    src={blogIcon}
-                    width={50}
-                    height={50}
-                    alt="blog-button"
-                    className='hover:cursor-pointer'
-                />
+                <Link href="/create-blog">
+                    <Image
+                        src={blogIcon}
+                        width={50}
+                        height={50}
+                        alt="blog-button"
+                        className='hover:cursor-pointer'
+                    />
+                </Link>
             </div>
         </nav>
     )
