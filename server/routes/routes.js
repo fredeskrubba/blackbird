@@ -1,19 +1,49 @@
 import express from "express"
 const router = express.Router()
+import popularBlog from "../model/popularBlog.js"
+import categories from "../model/categories.js"
+
 
 //Post Method
-router.post('/post', (req, res) => {
-    res.send('Post API 123')
+router.post('/post', async (req, res) => {
+    const data = new popularBlog({
+        title: req.body.title,
+        description: req.body.description,
+        tags: req.body.tags
+    })
+
+    try {
+        const dataToSave = await data.save();
+        res.status(200).json(dataToSave)
+    }
+    catch (error) {
+        res.status(400).json({message: error.message})
+    }
 })
 
-//Get all Method
-router.get('/getAll', (req, res) => {
-    res.send('Get All API')
+router.get('/getPopular', async (req, res) => {
+    try{
+        const data = await popularBlog.find();
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+router.get('/getTags', async (req, res) => {
+    try{
+        const data = await categories.find();
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
 })
 
 //Get by ID Method
 router.get('/getOne/:id', (req, res) => {
-    res.send('Get by ID API')
+    res.send(req.params.id)
 })
 
 //Update by ID Method
