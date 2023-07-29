@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Nav from '@/components/nav/Nav'
 import Header from '@/components/home/header/Header'
 import Intro from '@/components/home/intro/Intro'

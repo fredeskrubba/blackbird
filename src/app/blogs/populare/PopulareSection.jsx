@@ -1,56 +1,22 @@
 "use client"
 import React from 'react'
-import blogImage from "../../../assets/images/blog-image.png"
 import BlogCard from './BlogCard'
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import arrowIcon from "../../../assets/icons/arrow-icon.svg"
+import useBlogStore from "../../../stores/blogStore.js"
+import { useEffect } from 'react'
+
 
 const PopulareSection = () => {
     const [activeCat, setActiveCat] = useState(1)
-    const blogs = [
-        {
-            img: blogImage,
-            tags: [
-                {
-                    id: 1,
-                    tag: "Mad"
-                },
-                {
-                    id: 2,
-                    tag: "Sommer"
-                },
-                {
-                    id: 3,
-                    tag: "Nemt"
-                },
-            ],
-            title: "Ti lækre sommerretter",
-            description: "Nu er det sommer så her er mine bedste bud på at gøre hverdagen lidt mere spændende",
-            id: 1
-        },
-        {
-            img: blogImage,
-            tags: [
-                {
-                    id: 1,
-                    tag: "Mad"
-                },
-                {
-                    id: 2,
-                    tag: "Sommer"
-                },
-                {
-                    id: 3,
-                    tag: "Nemt"
-                },
-            ],
-            title: "Ti lækre sommerretter",
-            description: "Nu er det sommer så her er mine bedste bud på at gøre hverdagen lidt mere spændende",
-            id: 2
-        }
-    ]
+    const hotBlogs = useBlogStore((state) => state.hotBlogs)
+    const fetchHotBlogs = useBlogStore((state) => state.fetchHotBlogs)
+    
+    useEffect(() => {
+        fetchHotBlogs("http://localhost:4000/api/getPopular")
+    }, [])
 
     const categories = [
         {
@@ -86,7 +52,7 @@ const PopulareSection = () => {
         </article>
         <div className='mt-16 px-24 grid grid-cols-2 gap-60 mb-32'>
             {
-                blogs.map(({img, tags, title, description, id}) => <BlogCard key={id} img={img} tags={tags} headline={title} description={description}/>)
+                hotBlogs.map(({img, tags, title, description, id}) => <BlogCard key={id} img={img} tags={tags} headline={title} description={description}/>)
             }
         </div>
         <article className='flex gap-12 my-12 bg-dark px-24 py-6'>
@@ -100,7 +66,7 @@ const PopulareSection = () => {
         </div>
         <div className='mt-16 px-24 grid grid-cols-2 gap-60 mb-48'>
             {
-                blogs.map(({img, tags, title, description, id}) => <BlogCard key={id} img={img} tags={tags} headline={title} description={description}/>)
+                hotBlogs.map(({img, tags, title, description, id}) => <BlogCard key={id} img={img} tags={tags} headline={title} description={description}/>)
             }
         </div>
         <footer className='bg-dark p-56 flex items-center flex-col gap-28'>
