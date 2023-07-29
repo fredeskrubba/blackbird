@@ -1,7 +1,7 @@
 import express from "express"
 const router = express.Router()
-import popularBlog from "../model/popularBlog.js"
-import categories from "../model/categories.js"
+import popularBlog from "../model/popularBlog.mjs"
+import categories from "../model/categories.mjs"
 
 
 //Post Method
