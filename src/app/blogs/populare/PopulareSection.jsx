@@ -6,44 +6,22 @@ import Link from 'next/link'
 import Image from 'next/image'
 import arrowIcon from "../../../assets/icons/arrow-icon.svg"
 import useBlogStore from "../../../stores/blogStore.js"
+import useTagStore from '@/stores/tagStore'
 import { useEffect } from 'react'
 
 
 const PopulareSection = () => {
     const [activeCat, setActiveCat] = useState(1)
     const hotBlogs = useBlogStore((state) => state.hotBlogs)
+    const popularTags = useTagStore((state) => state.popularTags)
     const fetchHotBlogs = useBlogStore((state) => state.fetchHotBlogs)
+    const fetchPopularTags = useTagStore((state) => state.fetchPopularTags)
     
     useEffect(() => {
         fetchHotBlogs("http://localhost:4000/api/getPopular")
+        fetchPopularTags("http://localhost:4000/api/getTags")
     }, [])
 
-    const categories = [
-        {
-            name: "Rejse",
-            id: 1
-        },
-        {
-            name: "Mode",
-            id: 2
-        },
-        {
-            name: "Fitness",
-            id: 3
-        },
-        {
-            name: "Mad",
-            id: 4
-        },
-        {
-            name: "Fotografi",
-            id: 5
-        },
-        {
-            name: "Tech",
-            id: 6
-        },
-    ]
   return (
     <section className='pt-52 flex flex-col'>
         <article className='flex flex-col gap-4 px-24'>
@@ -57,7 +35,7 @@ const PopulareSection = () => {
         </div>
         <article className='flex gap-12 my-12 bg-dark px-24 py-6'>
             {
-                categories.map(({name, id}) => <div key={id} className={`${activeCat === id ? "bg-bronze text-dark" : "bg-dark text-bronze"} border-2 border-bronze rounded-full px-12 py-2 text-2xl hover:cursor-pointer`} onClick={()=> setActiveCat(id)}>{name}</div>)
+                popularTags.map(({name, _id}) => <div key={_id} className={`${activeCat === _id ? "bg-bronze text-dark" : "bg-dark text-bronze"} border-2 border-bronze rounded-full px-12 py-2 text-2xl hover:cursor-pointer`} onClick={()=> setActiveCat(_id)}>{name}</div>)
             }
         </article>
         <div className='flex gap-4 border-2 border-bronze py-4 px-8 rounded-full items-center justify-center w-52 self-end mx-24 hover:cursor-pointer'>
