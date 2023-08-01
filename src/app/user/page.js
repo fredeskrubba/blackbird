@@ -4,11 +4,11 @@ import useUserStore from '@/stores/userStore'
 import Nav from '@/components/nav/Nav'
 
 const User = () => {
-    const userName = useUserStore((state) => state.userName)
+    const user = useUserStore((state) => state.currentUser)
   return (
     <main>
         <Nav/>
-        <h1 className='pt-40'>Hej {userName}</h1>
+        <h1 className='pt-40'>{`Hej ${user.firstName} ${user.lastName}`}</h1>
     </main>
   )
 }
