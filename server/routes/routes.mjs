@@ -2,6 +2,7 @@ import express from "express"
 const router = express.Router()
 import popularBlog from "../model/popularBlog.mjs"
 import categories from "../model/categories.mjs"
+import users from "../model/users.mjs"
 
 
 //Post Method
@@ -24,6 +25,16 @@ router.post('/post', async (req, res) => {
 router.get('/getPopular', async (req, res) => {
     try{
         const data = await popularBlog.find();
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+router.get('/getUsers', async (req, res) => {
+    try{
+        const data = await users.find();
         res.json(data)
     }
     catch(error){

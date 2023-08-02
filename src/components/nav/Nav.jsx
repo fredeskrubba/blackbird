@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import Image from "next/image"
+import { useEffect } from 'react'
 import menuIcon from "../../assets/icons/menu-icon.svg"
 import searchIcon from "../../assets/icons/search-icon.svg"
 import profileIcon from "../../assets/icons/profile-icon.svg"
@@ -13,9 +14,21 @@ import { useState } from 'react'
 const Nav = ({home}) => {
     const [colorChange, setColorChange] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
-    const [username, setUserName] = useState("")
+    const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
-    const loggedIn = useUserStore((state) => state.loggedIn)
+    let loggedIn = useUserStore((state) => state.loggedIn)
+    let logIn = useUserStore((state) => state.logIn)
+    const users = useUserStore((state) => state.users)
+    let currentUser = useUserStore((state) => state.currentUser)
+    const fetchUsers = useUserStore((state) => state.fetchUsers)
+
+    useEffect(()=>{
+        fetchUsers("http://localhost:4000/api/getUsers")
+        if (users.some(user => user.userName === currentUser)){
+            logIn(currentUser)
+        }
+    }, [])
+
     const changeNavbarColor = () => {
         if (window.scrollY >= 300) {
             setColorChange(true);
@@ -91,7 +104,17 @@ const Nav = ({home}) => {
 
                     </section>
                     <p className='rounded-full bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{
-                        alert(password)
+                        for (let i = 0; i <= users.length ; i++){
+                            if (users[i].userName === "Skrubba" && users[i].password === password){
+                                logIn(users[i])
+                                setShowLoginModal(false)
+                                break;
+                            } else {
+                                setPassword("")
+                                setUserName("")
+                                break
+                            }
+                        }
                     }}>Log in</p>
                 </div>
             </article>

@@ -1,11 +1,35 @@
 import { create } from 'zustand'
 
 const useUserStore = create((set) => ({
-  userId: 1,
-  userName: "Frederik",
+  users: [{
+    currentUser: {
+    userName: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    profilePic: ""
+
+  }
+  }],
+  currentUser: {
+    userName: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    profilePic: ""
+
+  },
   loggedIn: false,
-  logIn: ()=> set(() => ({loggedIn: true})),
-  logOut: ()=> set(() => ({loggedIn: false}))
+  fetchUsers: async (url)=> {
+    const response = await fetch(url, {
+        method: "GET",
+    })
+    set({ users: await response.json() })
+  },
+  logIn: (currentUser) => set({
+    currentUser: currentUser,
+    loggedIn: true
+  })
 }))
 
 export default useUserStore
