@@ -1,12 +1,22 @@
 import { create } from 'zustand'
 
 const useUserStore = create((set) => ({
-  users: [],
+  users: [{
+    currentUser: {
+    userName: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    profilePic: ""
+
+  }
+  }],
   currentUser: {
     userName: "",
     firstName: "",
     lastName: "",
     password: "",
+    profilePic: ""
 
   },
   loggedIn: false,

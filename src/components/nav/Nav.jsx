@@ -24,8 +24,8 @@ const Nav = ({home}) => {
 
     useEffect(()=>{
         fetchUsers("http://localhost:4000/api/getUsers")
-        if (users.some(user => user.name === currentUser)){
-            loggedIn = true
+        if (users.some(user => user.userName === currentUser)){
+            logIn(currentUser)
         }
     }, [])
 
@@ -105,13 +105,14 @@ const Nav = ({home}) => {
                     </section>
                     <p className='rounded-full bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{
                         for (let i = 0; i <= users.length ; i++){
-                            if (users[i].userName === userName && users[i].password === password){
+                            if (users[i].userName === "Skrubba" && users[i].password === password){
                                 logIn(users[i])
                                 setShowLoginModal(false)
+                                break;
                             } else {
-                                console.log("no")
                                 setPassword("")
                                 setUserName("")
+                                break
                             }
                         }
                     }}>Log in</p>
