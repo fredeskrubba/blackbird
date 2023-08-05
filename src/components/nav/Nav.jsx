@@ -90,7 +90,7 @@ const Nav = ({home}) => {
                 </Link>
             </div>
             <article className={` bg-trans-dark fixed right-0 left-0 top-0 bottom-0 py-20 px-80 h-full flex-col justify-between ${showLoginModal ? "flex" : "hidden"}`}>
-                <div className='flex flex-col bg-bronze px-10 py-10 items-center rounded-lg justify-between'>
+                <div className='flex flex-col bg-bronze px-10 py-10 items-center justify-between'>
                     <section className='flex flex-col gap-8 w-full'>
                         <div className='flex justify-between items-center'>
                             <article className='flex flex-col gap-4'>
@@ -99,11 +99,11 @@ const Nav = ({home}) => {
                             </article>
                             <Image src={cancelIcon} alt='cancel' width={40} height={40} className='hover:cursor-pointer' onClick={()=>{setShowLoginModal(false)}}/>
                         </div>
-                        <input type="text" placeholder='Brugernavn' className='rounded-full px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setUserName(e.target.value)}}/>
-                        <input type="text" placeholder='Password' className='rounded-full px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setPassword(e.target.value)}}/>
+                        <input type="text" placeholder='Brugernavn' className=' px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setUserName(e.target.value)}}/>
+                        <input type="password" placeholder='Password' className=' px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setPassword(e.target.value)}}/>
 
                     </section>
-                    <p className='rounded-full bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{
+                    <p className=' bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{
                         for (let i = 0; i <= users.length ; i++){
                             if (users[i].userName === "Skrubba" && users[i].password === password){
                                 logIn(users[i])
