@@ -29,6 +29,17 @@ const useUserStore = create((set) => ({
   logIn: (currentUser) => set({
     currentUser: currentUser,
     loggedIn: true
+  }),
+  logOut: () => set({
+    currentUser: {
+      userName: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+      profilePic: ""
+  
+    },
+    loggedIn: false
   })
 }))
 

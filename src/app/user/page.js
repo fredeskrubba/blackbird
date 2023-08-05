@@ -7,6 +7,7 @@ import editIcon from "../../assets/icons/edit-icon.svg"
 
 const User = () => {
     const user = useUserStore((state) => state.currentUser)
+    const logOut = useUserStore((state) => state.logOut)
   return (
     <main>
         <Nav/>
@@ -38,11 +39,11 @@ const User = () => {
               />
           </div>
         </article>
-        <article className='flex flex-col gap-8 mx-24 mt-8'>
+        <article className='flex flex-col gap-8 mx-24 my-8'>
           <div>
             <h2 className='font-semibold italic text-xl mb-4'>Fornavn</h2>
             <article className="flex gap-10">
-              <input type="text" placeholder={user.firstName} className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold'/>
+              <input type="text" placeholder={user.firstName} className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold focus:outline-none'/>
               <Image
                     src={editIcon}
                     alt='edit-icon'
@@ -55,7 +56,7 @@ const User = () => {
           <div>
             <h2 className='font-semibold italic text-xl mb-4'>Efternavn</h2>
             <article className="flex gap-10">
-              <input type="text" placeholder={user.lastName} className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold'/>
+              <input type="text" placeholder={user.lastName} className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold focus:outline-none'/>
               <Image
                     src={editIcon}
                     alt='edit-icon'
@@ -68,7 +69,7 @@ const User = () => {
           <div>
             <h2 className='font-semibold italic text-xl mb-4'>Password</h2>
             <article className="flex gap-10">
-              <input type="text" placeholder={user.password} className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold'/>
+              <input type="text" placeholder={user.password} className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold focus:outline-none'/>
               <Image
                     src={editIcon}
                     alt='edit-icon'
@@ -78,6 +79,7 @@ const User = () => {
                   />
             </article>
           </div>
+          <p className='bg-bronze text-3xl font-bold px-8 py-4 text-light w-44 text-center cursor-pointer' onClick={()=> logOut()}>Log Ud</p>
         </article>
     </main>
   )
