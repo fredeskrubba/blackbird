@@ -14,13 +14,15 @@ import { useState } from 'react'
 const Nav = ({home}) => {
     const [colorChange, setColorChange] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
     let loggedIn = useUserStore((state) => state.loggedIn)
     let logIn = useUserStore((state) => state.logIn)
     const users = useUserStore((state) => state.users)
     let currentUser = useUserStore((state) => state.currentUser)
     const fetchUsers = useUserStore((state) => state.fetchUsers)
+    const enteredUsername = useUserStore((state) => state.enteredUsername)
+    const setEnteredUsername = useUserStore((state) => state.setEnteredUsername)
+    const enteredPassword = useUserStore((state) => state.enteredPassword)
+    const setEnteredPassword = useUserStore((state) => state.setEnteredPassword)
 
     useEffect(()=>{
         fetchUsers("http://localhost:4000/api/getUsers")
@@ -97,22 +99,27 @@ const Nav = ({home}) => {
                                 <h2 className='text-light font-caveat text-5xl font-bold'>Log in</h2>
                                 <div className='p-0.5 bg-light w-28 -rotate-3 z-0'></div>
                             </article>
-                            <Image src={cancelIcon} alt='cancel' width={40} height={40} className='hover:cursor-pointer' onClick={()=>{setShowLoginModal(false)}}/>
+                            <Image src={cancelIcon} alt='cancel' width={40} height={40} className='hover:cursor-pointer' onClick={()=>{
+                                setShowLoginModal(false)
+
+                            }}/>
                         </div>
-                        <input type="text" placeholder='Brugernavn' className=' px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setUserName(e.target.value)}}/>
-                        <input type="password" placeholder='Password' className=' px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setPassword(e.target.value)}}/>
+                        <input type="text" placeholder='Brugernavn' value={enteredUsername} className=' px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setEnteredUsername(e.target.value)}}/>
+                        <input type="password" placeholder='Password' value={enteredPassword} className=' px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setEnteredPassword(e.target.value)}}/>
 
                     </section>
                     <p className=' bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{
                         for (let i = 0; i <= users.length ; i++){
-                            if (users[i].userName === "Skrubba" && users[i].password === password){
+                            if (users[i].userName === enteredUsername && users[i].password === enteredPassword){
                                 logIn(users[i])
                                 setShowLoginModal(false)
-                                break;
-                            } else {
-                                setPassword("")
-                                setUserName("")
+                                setEnteredUsername("")
+                                setEnteredPassword("")
                                 break
+                            } else {
+                                setEnteredPassword("")
+                                setEnteredUsername("")
+                                console.log("wrong password or username")
                             }
                         }
                     }}>Log in</p>

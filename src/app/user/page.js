@@ -4,10 +4,18 @@ import useUserStore from '@/stores/userStore'
 import Nav from '@/components/nav/Nav'
 import Image from 'next/image'
 import editIcon from "../../assets/icons/edit-icon.svg"
+import { useState } from 'react'
 
 const User = () => {
     const user = useUserStore((state) => state.currentUser)
     const logOut = useUserStore((state) => state.logOut)
+    const setEnteredUsername = useUserStore((state) => state.setEnteredUsername)
+    const setEnteredPassword = useUserStore((state) => state.setEnteredPassword)
+    const [editPassword, setEditPassword] = useState(false)
+    const [editFirstName, setEditFirstName] = useState(false)
+    const [editLastName, setEditLastName] = useState(false)
+    const [editUsername, setEditUsername] = useState(false)
+
   return (
     <main>
         <Nav/>
@@ -43,13 +51,18 @@ const User = () => {
           <div>
             <h2 className='font-semibold italic text-xl mb-4'>Fornavn</h2>
             <article className="flex gap-10">
+              {editFirstName ? 
+              <input type="text" placeholder={user.firstName} readOnly className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold focus:outline-none'/>
+              :
               <input type="text" placeholder={user.firstName} className='border-2 border-bronze text-bronze placeholder:text-bronze px-4 text-xl font-semibold focus:outline-none'/>
+              }
               <Image
                     src={editIcon}
                     alt='edit-icon'
                     width={50}
                     height={50}
                     className='hover:cursor-pointer'
+                    onClick={()=>{setEditFirstName(true)}}
                   />
             </article>
           </div>
@@ -79,7 +92,11 @@ const User = () => {
                   />
             </article>
           </div>
-          <p className='bg-bronze text-3xl font-bold px-8 py-4 text-light w-44 text-center cursor-pointer' onClick={()=> logOut()}>Log Ud</p>
+          <p className='bg-bronze text-3xl font-bold px-8 py-4 text-light w-44 text-center cursor-pointer' onClick={()=> {
+            setEnteredUsername("")
+            setEnteredPassword("")
+            logOut()
+            }}>Log Ud</p>
         </article>
     </main>
   )
