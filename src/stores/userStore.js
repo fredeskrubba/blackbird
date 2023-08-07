@@ -1,6 +1,10 @@
 import { create } from 'zustand'
 
 const useUserStore = create((set) => ({
+  enteredUsername: "",
+  setEnteredUsername: (userName) => set( {enteredUsername: userName}),
+  enteredPassword: "",
+  setEnteredPassword: (password) => set({enteredPassword: password}),
   users: [{
     currentUser: {
     userName: "",
@@ -20,12 +24,14 @@ const useUserStore = create((set) => ({
 
   },
   loggedIn: false,
+
   fetchUsers: async (url)=> {
     const response = await fetch(url, {
         method: "GET",
     })
     set({ users: await response.json() })
   },
+  
   logIn: (currentUser) => set({
     currentUser: currentUser,
     loggedIn: true
@@ -37,7 +43,6 @@ const useUserStore = create((set) => ({
       lastName: "",
       password: "",
       profilePic: ""
-  
     },
     loggedIn: false
   })
