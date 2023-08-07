@@ -11,12 +11,12 @@ const Join = () => {
         <h2 className='text-bronze text-3xl w-1/2 text-center'>Hvad venter du på? Kom i gang med at dele, udforske og opdage alt  vi har at byde på</h2>
         {loggedIn ? 
           <article className='flex gap-20 mt-10'>
-            <Link href="/create-user"><p className='py-3 px-8 rounded-full text-bronze border-bronze border-2 font-semibold text-2xl w-56 text-center cursor-pointer'>Se Blogs</p></Link>
+            <Link href="/create-user"><p className='py-3 px-8 text-bronze border-bronze border-2 font-semibold text-2xl w-56 text-center cursor-pointer hover:bg-bronze hover:text-dark'>Se Blogs</p></Link>
           </article>
         : 
           <article className='flex gap-20 mt-10'>
-            <Link href="/create-user"><p className='py-3 px-8 rounded-full text-bronze border-bronze border-2 font-semibold text-2xl w-56 text-center cursor-pointer'>Opret Bruger</p></Link>
-            <Link href="log-in"><p className='py-3 px-8 rounded-full text-bronze border-bronze border-2 font-semibold text-2xl w-56 text-center cursor-pointer'>Log Ind</p></Link>
+            <Link href="/create-user"><p className='py-3 px-8 text-bronze border-bronze border-2 font-semibold text-2xl w-56 text-center cursor-pointer hover:bg-bronze hover:text-dark'>Opret Bruger</p></Link>
+            <Link href="log-in"><p className='py-3 px-8 text-bronze border-bronze border-2 font-semibold text-2xl w-56 text-center cursor-pointer hover:bg-bronze hover:text-dark'>Log Ind</p></Link>
           </article>
         }
     </section>
