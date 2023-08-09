@@ -6,24 +6,25 @@ const useUserStore = create((set) => ({
   enteredPassword: "",
   setEnteredPassword: (password) => set({enteredPassword: password}),
   users: [{
-    currentUser: {
     userName: "",
     firstName: "",
     lastName: "",
     password: "",
-    profilePic: ""
+    profilePic: "",
+    loggedIn: false
 
-  }
   }],
+  
   currentUser: {
     userName: "",
     firstName: "",
     lastName: "",
     password: "",
-    profilePic: ""
-
+    profilePic: "",
+    loggedIn: false
   },
-  loggedIn: false,
+
+  setCurrentUser: (user) => set({currentUser: user}),
 
   fetchUsers: async (url)=> {
     const response = await fetch(url, {
@@ -31,21 +32,8 @@ const useUserStore = create((set) => ({
     })
     set({ users: await response.json() })
   },
+
   
-  logIn: (currentUser) => set({
-    currentUser: currentUser,
-    loggedIn: true
-  }),
-  logOut: () => set({
-    currentUser: {
-      userName: "",
-      firstName: "",
-      lastName: "",
-      password: "",
-      profilePic: ""
-    },
-    loggedIn: false
-  })
 }))
 
 export default useUserStore

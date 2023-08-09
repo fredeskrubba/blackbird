@@ -14,10 +14,9 @@ import { useState } from 'react'
 const Nav = ({home}) => {
     const [colorChange, setColorChange] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
-    let loggedIn = useUserStore((state) => state.loggedIn)
-    let logIn = useUserStore((state) => state.logIn)
     const users = useUserStore((state) => state.users)
-    let currentUser = useUserStore((state) => state.currentUser)
+    const currentUser = useUserStore((state) => state.currentUser)
+    const setCurrentUser = useUserStore((state) => state.setCurrentUser)
     const fetchUsers = useUserStore((state) => state.fetchUsers)
     const enteredUsername = useUserStore((state) => state.enteredUsername)
     const setEnteredUsername = useUserStore((state) => state.setEnteredUsername)
@@ -26,10 +25,17 @@ const Nav = ({home}) => {
 
     useEffect(()=>{
         fetchUsers("http://localhost:4000/api/getUsers")
-        if (users.some(user => user.userName === currentUser)){
-            logIn(currentUser)
-        }
     }, [])
+
+    useEffect(() => {
+        for (let i = 0; i < users.length; i++) {
+            console.log(users[i])
+            if (users[i].loggedIn === true){
+                console.log(1)
+                setCurrentUser(users[i])
+            }
+        }
+    }, [users]);
 
     const changeNavbarColor = () => {
         if (window.scrollY >= 300) {
@@ -52,7 +58,7 @@ const Nav = ({home}) => {
             />
             <div className='flex gap-8'>
             {
-                loggedIn ? 
+                currentUser.loggedIn ? 
                 <Link href="/user">
                     <Image
                         src={profileIcon}
@@ -108,21 +114,7 @@ const Nav = ({home}) => {
                         <input type="password" placeholder='Password' value={enteredPassword} className=' px-5 py-3 text-bronze text-2xl placeholder:text-bronze placeholder:font-semibold focus:outline-none' onChange={(e)=>{setEnteredPassword(e.target.value)}}/>
 
                     </section>
-                    <p className=' bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{
-                        for (let i = 0; i <= users.length ; i++){
-                            if (users[i].userName === enteredUsername && users[i].password === enteredPassword){
-                                logIn(users[i])
-                                setShowLoginModal(false)
-                                setEnteredUsername("")
-                                setEnteredPassword("")
-                                break
-                            } else {
-                                setEnteredPassword("")
-                                setEnteredUsername("")
-                                console.log("wrong password or username")
-                            }
-                        }
-                    }}>Log in</p>
+                    <p className=' bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{}}>Log in</p>
                 </div>
             </article>
         </nav>

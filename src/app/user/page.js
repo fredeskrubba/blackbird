@@ -8,15 +8,15 @@ import { useState } from 'react'
 
 const User = () => {
     const user = useUserStore((state) => state.currentUser)
-    const logOut = useUserStore((state) => state.logOut)
     const setEnteredUsername = useUserStore((state) => state.setEnteredUsername)
     const setEnteredPassword = useUserStore((state) => state.setEnteredPassword)
     const [editPassword, setEditPassword] = useState(false)
     const [editFirstName, setEditFirstName] = useState(false)
     const [editLastName, setEditLastName] = useState(false)
     const [editUsername, setEditUsername] = useState(false)
-
-  return (
+    console.log(user)
+    
+    return (
     <main>
         <Nav/>
         <article className='flex pt-40 mx-24 border-b-4 border-bronze py-4 justify-between items-center'>
@@ -95,7 +95,6 @@ const User = () => {
           <p className='bg-bronze text-3xl font-bold px-8 py-4 text-light w-44 text-center cursor-pointer' onClick={()=> {
             setEnteredUsername("")
             setEnteredPassword("")
-            logOut()
             }}>Log Ud</p>
         </article>
     </main>
