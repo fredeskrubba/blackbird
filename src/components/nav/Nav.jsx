@@ -135,33 +135,39 @@ const Nav = ({home}) => {
                     />
                 </section>
                 <section className=' flex flex-col gap-12 px-24'>
-                    <div className='flex items-center gap-4 hover:cursor-pointer'>
-                        <Image
-                            src={homeIcon}
-                            width={40}
-                            height={40}
-                            alt="home-button"
-                        />
-                        <p className='text-bronze font-bold text-3xl'>Hjem</p>
-                    </div>
-                    <div className='flex items-center gap-4 hover:cursor-pointer'>
-                        <Image
-                            src={blogIcon}
-                            width={40}
-                            height={40}
-                            alt="blog-button"
-                        />
-                        <p className='text-bronze font-bold text-3xl'>Blogs</p>
-                    </div>
-                    <div className='flex items-center gap-4 hover:cursor-pointer'>
-                        <Image
-                            src={profileIcon2}
-                            width={40}
-                            height={40}
-                            alt="profile-button"
-                        />
-                        <p className='text-bronze font-bold text-3xl'>Min Side</p>
-                    </div>
+                    <Link href="/">
+                        <div className='flex items-center gap-4 hover:cursor-pointer'>
+                            <Image
+                                src={homeIcon}
+                                width={40}
+                                height={40}
+                                alt="home-button"
+                            />
+                            <p className='text-bronze font-bold text-3xl'>Hjem</p>
+                        </div>
+                    </Link>
+                    <Link href="/blogs">
+                        <div className='flex items-center gap-4 hover:cursor-pointer'>
+                            <Image
+                                src={blogIcon}
+                                width={40}
+                                height={40}
+                                alt="blog-button"
+                            />
+                            <p className='text-bronze font-bold text-3xl'>Blogs</p>
+                        </div>
+                    </Link>
+                    <Link href="/user">
+                        <div className='flex items-center gap-4 hover:cursor-pointer'>
+                            <Image
+                                src={profileIcon2}
+                                width={40}
+                                height={40}
+                                alt="profile-button"
+                            />
+                            <p className='text-bronze font-bold text-3xl'>Min Side</p>
+                        </div>
+                    </Link>
                     
                 </section>
             </article>
