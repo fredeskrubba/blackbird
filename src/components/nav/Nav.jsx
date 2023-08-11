@@ -3,10 +3,14 @@ import React from 'react'
 import Image from "next/image"
 import { useEffect } from 'react'
 import menuIcon from "../../assets/icons/menu-icon.svg"
+import editIcon from "../../assets/icons/edit-icon-transparent.svg"
 import searchIcon from "../../assets/icons/search-icon.svg"
 import profileIcon from "../../assets/icons/profile-icon.svg"
+import profileIcon2 from "../../assets/icons/profile-icon-2.svg"
 import blogIcon from "../../assets/icons/blog-icon.svg"
 import cancelIcon from "../../assets/icons/cancel-icon.svg"
+import cancelIcon2 from "../../assets/icons/cancel-icon-2.svg"
+import homeIcon from "../../assets/icons/home-icon.svg"
 import Link from 'next/link'
 import useUserStore from '@/stores/userStore'
 import { useState } from 'react'
@@ -14,6 +18,7 @@ import { useState } from 'react'
 const Nav = ({home}) => {
     const [colorChange, setColorChange] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
+    const [showSideMenu, setShowSideMenu] = useState(false)
     const users = useUserStore((state) => state.users)
     const currentUser = useUserStore((state) => state.currentUser)
     const setCurrentUser = useUserStore((state) => state.setCurrentUser)
@@ -55,6 +60,7 @@ const Nav = ({home}) => {
                 height={50}
                 alt="menu-button"
                 className='hover:cursor-pointer'
+                onClick={()=>{setShowSideMenu(true)}}
             />
             <div className='flex gap-8'>
             {
@@ -89,7 +95,7 @@ const Nav = ({home}) => {
                 />
                 <Link href="/create-blog">
                     <Image
-                        src={blogIcon}
+                        src={editIcon}
                         width={50}
                         height={50}
                         alt="blog-button"
@@ -116,6 +122,48 @@ const Nav = ({home}) => {
                     </section>
                     <p className=' bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{}}>Log in</p>
                 </div>
+            </article>
+            <article className={`fixed left-0 w-96 bg-light top-0 border-bronze h-full flex flex-col gap-6 shadow-lg ${showSideMenu ? "" : "hidden"}`}>
+                <section className=' w-full px-24 py-8'>
+                    <Image
+                        src={cancelIcon2}
+                        width={40}
+                        height={40}
+                        alt="menu-exit-button"
+                        className='hover:cursor-pointer'
+                        onClick={()=>{setShowSideMenu(false)}}
+                    />
+                </section>
+                <section className=' flex flex-col gap-12 px-24'>
+                    <div className='flex items-center gap-4 hover:cursor-pointer'>
+                        <Image
+                            src={homeIcon}
+                            width={40}
+                            height={40}
+                            alt="home-button"
+                        />
+                        <p className='text-bronze font-bold text-3xl'>Hjem</p>
+                    </div>
+                    <div className='flex items-center gap-4 hover:cursor-pointer'>
+                        <Image
+                            src={blogIcon}
+                            width={40}
+                            height={40}
+                            alt="blog-button"
+                        />
+                        <p className='text-bronze font-bold text-3xl'>Blogs</p>
+                    </div>
+                    <div className='flex items-center gap-4 hover:cursor-pointer'>
+                        <Image
+                            src={profileIcon2}
+                            width={40}
+                            height={40}
+                            alt="profile-button"
+                        />
+                        <p className='text-bronze font-bold text-3xl'>Min Side</p>
+                    </div>
+                    
+                </section>
             </article>
         </nav>
     )
