@@ -12,6 +12,10 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: {
+        'slideLeftIn': 'slideLeftIn 400ms ease-in',
+        'slideLeftOut': 'slideLeftOut 400ms ease-out',
+      },
     },
     colors: {
       'trans-dark': '#1E1E1ECC',
