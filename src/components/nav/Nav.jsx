@@ -19,6 +19,7 @@ const Nav = ({home}) => {
     const [colorChange, setColorChange] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
     const [showSideMenu, setShowSideMenu] = useState(false)
+    const [hideSideMenu, sethideSideMenu] = useState(true)
     const users = useUserStore((state) => state.users)
     const currentUser = useUserStore((state) => state.currentUser)
     const setCurrentUser = useUserStore((state) => state.setCurrentUser)
@@ -60,7 +61,9 @@ const Nav = ({home}) => {
                 height={50}
                 alt="menu-button"
                 className='hover:cursor-pointer'
-                onClick={()=>{setShowSideMenu(true)}}
+                onClick={()=>{
+                    setShowSideMenu(true)
+                }}
             />
             <div className='flex gap-8'>
             {
@@ -123,7 +126,7 @@ const Nav = ({home}) => {
                     <p className=' bg-bronze border-solid border-light border-2 px-6 py-4 mt-12 text-light text-2xl w-1/3 text-center hover:cursor-pointer hover:bg-light hover:text-bronze hover:border-bronze' onClick={()=>{}}>Log in</p>
                 </div>
             </article>
-            <article className={`fixed left-0 w-96 bg-light top-0 border-bronze h-full flex flex-col gap-6 shadow-lg ${showSideMenu ? "" : "hidden"}`}>
+            <article className={`fixed left-0 w-96 bg-light top-0 border-bronze h-full flex-col gap-6 shadow-lg flex ${showSideMenu ? "animate-slideLeftIn" : "hidden"}`}>
                 <section className=' w-full px-24 py-8'>
                     <Image
                         src={cancelIcon2}
@@ -131,7 +134,9 @@ const Nav = ({home}) => {
                         height={40}
                         alt="menu-exit-button"
                         className='hover:cursor-pointer'
-                        onClick={()=>{setShowSideMenu(false)}}
+                        onClick={()=>{
+                            setShowSideMenu(false)
+                        }}
                     />
                 </section>
                 <section className=' flex flex-col gap-12 px-24'>
