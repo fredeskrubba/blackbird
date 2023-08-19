@@ -1,9 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 
+
 const BlogCard = ({img, tags, headline, description, author}) => {
+
   return (
-    <article className='border-bronze border-4 w-full grid-cols-[1fr,3fr] grid'>
+    <article className='border-bronze border-4 w-full grid-cols-[1fr,3fr] grid bg-light'>
         <Image src={img} alt="blog" width={50} height={100} unoptimized={true} style={{width: '100%', height: "100%", objectFit: "cover"}}/>
         <section className='px-8 py-6 flex flex-col justify-between relative'>
           <article className='pb-32'>

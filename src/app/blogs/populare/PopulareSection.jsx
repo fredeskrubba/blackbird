@@ -16,7 +16,8 @@ const PopulareSection = () => {
     const popularTags = useTagStore((state) => state.popularTags)
     const fetchHotBlogs = useBlogStore((state) => state.fetchHotBlogs)
     const fetchPopularTags = useTagStore((state) => state.fetchPopularTags)
-    
+
+
     useEffect(() => {
         fetchHotBlogs("http://localhost:4000/api/getPopular")
         fetchPopularTags("http://localhost:4000/api/getTags")
